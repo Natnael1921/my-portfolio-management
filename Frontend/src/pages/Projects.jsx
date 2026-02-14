@@ -136,7 +136,7 @@ export default function Projects() {
           {projects.map((project) => (
             <div key={project._id} className="project-card">
               <img
-                src={`http://localhost:5000${project.imageUrl}`}
+                src={`https://my-portfolio-management-backend.onrender.com${project.imageUrl}`}
                 alt={project.title}
                 className="project-image"
               />

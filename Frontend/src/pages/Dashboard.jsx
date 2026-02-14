@@ -8,6 +8,7 @@ export default function Dashboard() {
   const [personalCount, setPersonalCount] = useState(0);
   const [worksCount, setWorksCount] = useState(0);
   const [visitorsCount, setVisitorsCount] = useState(0);
+  const [latestProject, setLatestProject] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,14 +20,22 @@ export default function Dashboard() {
 
         setProjectsCount(projects.length);
 
-        // Count personal and works
         const personalProjects = projects.filter(
-          (p) => p.type === "personal"
+          (p) => p.category === "personal"
         );
-        const worksProjects = projects.filter((p) => p.type === "work");
+        const worksProjects = projects.filter(
+          (p) => p.category === "work"
+        );
 
         setPersonalCount(personalProjects.length);
         setWorksCount(worksProjects.length);
+
+        if (projects.length > 0) {
+          const sortedProjects = projects.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          );
+          setLatestProject(sortedProjects[0]);
+        }
 
         // Fetch visitor count
         const visitorsRes = await API.get("/visitors/count");
@@ -77,6 +86,17 @@ export default function Dashboard() {
             <p>{visitorsCount}</p>
           </div>
         </div>
+
+        {latestProject && (
+          <div className="latest-project-card">
+            <h2>Latest Project</h2>
+            <h3>{latestProject.title}</h3>
+            <p>{latestProject.description}</p>
+            <span className={`project-type ${latestProject.category}`}>
+              {latestProject.category}
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

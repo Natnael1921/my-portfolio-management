@@ -18,7 +18,7 @@
 
 /* Heading */
 .dashboard-content h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 25px;
   color: #ffffff;
   letter-spacing: 0.5px;
@@ -74,6 +74,49 @@
 .visitors-card h2 {
   color: #ef4444;
 }
+.latest-project-card {
+  margin-top: 80px;
+  padding: 20px;
+  border: 1px solid #2c2c2c;
+  border-radius: 12px;
+  background: #1c1c1c;
+  color: #e0e0e0;
+}
+
+.latest-project-card h2 {
+  margin: 0 0 10px 0;
+  color: #ffffff;
+}
+
+.latest-project-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.latest-project-card p {
+  font-size: 0.95rem;
+  color: #cccccc;
+  margin: 10px 0;
+}
+
+.latest-project-card .project-type {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.latest-project-card .project-type.personal {
+  background: #10b981;
+  color: white;
+}
+
+.latest-project-card .project-type.work {
+  background: #f59e0b;
+  color: white;
+}
+
 @media (max-width: 1024px) {
   .stats-container {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
