@@ -7,15 +7,17 @@ import {
 } from "../controllers/project.controller.js";
 
 import { protect } from "../middleware/auth.middleware.js";
+import upload from "../middleware/upload.middleware.js";
 
 const router = express.Router();
 
-// Public
 router.get("/", getProjects);
 
-// Protected
-router.post("/", protect, createProject);
-router.put("/:id", protect, updateProject);
+// IMPORTANT
+router.post("/", protect, upload.single("image"), createProject);
+
+router.put("/:id", protect, upload.single("image"), updateProject);
+
 router.delete("/:id", protect, deleteProject);
 
 export default router;

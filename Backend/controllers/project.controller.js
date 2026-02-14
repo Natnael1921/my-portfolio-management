@@ -13,31 +13,66 @@ export const getProjects = async (req, res) => {
 // CREATE new project (admin only later)
 export const createProject = async (req, res) => {
   try {
-    const project = new Project(req.body);
-    const savedProject = await project.save();
-    res.status(201).json(savedProject);
+    console.log(req.body);
+    console.log(req.file);
+
+    const { title, description, category, tech, github, live } = req.body;
+
+    if (!title || !description || !category) {
+      return res.status(400).json({ message: "Required fields missing" });
+    }
+
+    const imageUrl = req.file
+      ? `/uploads/${req.file.filename}`
+      : "";
+
+    const project = new Project({
+      title,
+      description,
+      category,
+      tech,
+      github,
+      live,
+      imageUrl,
+    });
+
+    await project.save();
+
+    res.status(201).json(project);
+
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
+
 // UPDATE project
 export const updateProject = async (req, res) => {
   try {
-    const updatedProject = await Project.findByIdAndUpdate(
+    const { title, description, category } = req.body;
+
+    let updateData = {
+      title,
+      description,
+      category,
+    };
+
+    if (req.file) {
+      updateData.imageUrl =
+        `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+    }
+
+    const project = await Project.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      updateData,
       { new: true }
     );
 
-    if (!updatedProject) {
-      return res.status(404).json({ message: "Project not found" });
-    }
-
-    res.status(200).json(updatedProject);
+    res.json(project);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
+
 
 
 // DELETE project

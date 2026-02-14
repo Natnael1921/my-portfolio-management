@@ -22,6 +22,7 @@ connectDB();
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/visitors", visitorRoutes);
+app.use("/uploads", express.static("uploads"));
 
 // Test route
 app.get("/", (req, res) => {

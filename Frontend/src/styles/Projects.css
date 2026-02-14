@@ -1,0 +1,273 @@
+.projects-container {
+  display: flex;
+  min-height: 100vh;
+  background: #121212;
+}
+
+.projects-content {
+  flex: 1;
+  padding: 30px 300px;
+  background: #1a1a1a;
+  color: #e0e0e0;
+  overflow-y: auto;
+}
+
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.add-button {
+  padding: 10px 20px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background: #2563eb;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Project Card */
+.project-card {
+  background: #1c1c1c;
+  border: 1px solid #2c2c2c;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; 
+  object-position: center; 
+  border-bottom: 1px solid #2c2c2c;
+  display: block;
+}
+
+
+
+.project-info {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-info h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.project-info p {
+  font-size: 0.95rem;
+  color: #cccccc;
+  flex-grow: 1;
+}
+
+.project-type {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 6px;
+  align-self: flex-start;
+}
+
+.project-type.personal {
+  background: #10b981;
+  color: white;
+}
+
+.project-type.work {
+  background: #f59e0b;
+  color: white;
+}
+
+.project-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.project-actions button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #3b82f6;
+  color: white;
+  font-size: 0.85rem;
+}
+
+.project-actions button:hover {
+  background: #2563eb;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #1c1c1c;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal h2 {
+  margin: 0;
+  color: #ffffff;
+}
+
+.modal input,
+.modal textarea,
+.modal select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background: #2c2c2c;
+  color: #e0e0e0;
+}
+
+.modal button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #3b82f6;
+  color: white;
+}
+
+.modal .cancel-button {
+  background: #ef4444;
+}
+
+.modal button:hover {
+  opacity: 0.9;
+}
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modal-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #aaa;
+  gap: 6px;
+}
+
+.modal input,
+.modal textarea,
+.modal select {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  padding: 12px;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.modal input:focus,
+.modal textarea:focus,
+.modal select:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.file-input input {
+  padding: 8px;
+  background: transparent;
+  border: none;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.save-button {
+  flex: 1;
+  background: #3b82f6;
+}
+
+.cancel-button {
+  flex: 1;
+  background: #444;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .projects-content {
+    padding: 90px 25px; 
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .project-card {
+    flex-direction: column;
+  }
+
+  .project-info {
+    padding: 12px;
+  }
+
+  .modal {
+    padding: 20px;
+    width: 95%;
+  }
+
+  .modal input,
+  .modal textarea,
+  .modal select {
+    padding: 10px;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+  }
+
+  .save-button,
+  .cancel-button {
+    width: 100%;
+  }
+}
+}
