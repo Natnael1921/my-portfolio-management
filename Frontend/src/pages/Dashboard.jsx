@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import API from "../api";
-import "../styles/Dashboard.css";
+import "../styles/dashboard.css";
 
 export default function Dashboard() {
   const [projectsCount, setProjectsCount] = useState(0);
