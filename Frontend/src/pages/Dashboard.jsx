@@ -21,25 +21,23 @@ export default function Dashboard() {
         setProjectsCount(projects.length);
 
         const personalProjects = projects.filter(
-          (p) => p.category === "personal"
+          (p) => p.category === "personal",
         );
-        const worksProjects = projects.filter(
-          (p) => p.category === "work"
-        );
+        const worksProjects = projects.filter((p) => p.category === "work");
 
         setPersonalCount(personalProjects.length);
         setWorksCount(worksProjects.length);
 
         if (projects.length > 0) {
           const sortedProjects = projects.sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
           );
           setLatestProject(sortedProjects[0]);
         }
 
         // Fetch visitor count
         const visitorsRes = await API.get("/visitors/count");
-        setVisitorsCount(visitorsRes.data.count);
+        setVisitorsCount(visitorsRes.data?.totalVisits || 0);
       } catch (err) {
         console.log("Error fetching dashboard data:", err);
       }

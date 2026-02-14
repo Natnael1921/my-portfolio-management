@@ -1,15 +1,12 @@
 import mongoose from "mongoose";
 
-const visitorSchema = new mongoose.Schema(
-  {
-    totalVisits: {
-      type: Number,
-      default: 0,
-    },
+const visitorSchema = new mongoose.Schema({
+  ips: {
+    type: [String],
+    default: [],
   },
-  { timestamps: true }
-);
+});
 
 const Visitor = mongoose.model("Visitor", visitorSchema);
 
-export default Visitor;
+export default Visitor; 
