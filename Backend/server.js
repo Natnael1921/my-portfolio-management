@@ -5,6 +5,7 @@ import { connectDB } from "./config/db.js";
 
 import authRoutes from "./routes/auth.routes.js";
 import projectRoutes from "./routes/project.routes.js";
+import visitorRoutes from "./routes/visitor.routes.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ connectDB();
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
+app.use("/api/visitors", visitorRoutes);
 
 // Test route
 app.get("/", (req, res) => {
