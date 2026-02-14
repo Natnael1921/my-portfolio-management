@@ -1,0 +1,140 @@
+.sidebar {
+  width: 240px; 
+  height: 100vh;
+  background: linear-gradient(180deg, #1b1b1b 0%, #232323 100%);
+  color: #e0e0e0;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #2c2c2c;
+  box-shadow: 4px 0 15px rgba(0,0,0,0.5);
+  position: fixed; 
+  transition: width 0.3s;
+}
+
+
+
+.sidebar-logo {
+  font-size: 1.7rem;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex-grow: 1; 
+}
+
+.sidebar-link {
+  color: #e0e0e0;
+  text-decoration: none;
+  padding: 11px 10px;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  font-size:14px;
+}
+
+.sidebar-link:hover {
+  background: #333333;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.sidebar-link.active {
+  background: #3b82f6;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(59,130,246,0.5);
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  padding: 14px 12px;
+  border-radius: 10px;
+  font-weight: 500;
+  color: #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+  background: #ef4444; 
+  color: white;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+/* Hamburger menu*/
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: linear-gradient(180deg, #1b1b1b 0%, #232323 100%);
+  color: #e0e0e0;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #2c2c2c;
+  box-shadow: 4px 0 15px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+}
+.sidebar-close {
+  display: none;
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  font-size: 2rem;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+/* Mobile:*/
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .sidebar-close {
+    display: block;
+  }
+}

@@ -1,0 +1,115 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: #121212;
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 30px;
+  padding-left: 300px;
+  background: #1a1a1a;
+  color: #e0e0e0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Heading */
+.dashboard-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+/* Stats container */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* Individual stat card */
+.stat-card {
+  background: #1c1c1c;
+  border: 1px solid #2c2c2c;
+  padding: 25px 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+  transition: transform 0.2s, background 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  background: #232323;
+}
+
+.stat-card h2 {
+  font-size: 1.2rem;
+  color: #cccccc;
+  margin-bottom: 12px;
+}
+
+.stat-card p {
+  font-size: 2rem;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.projects-card h2 {
+  color: #3b82f6;
+}
+
+.personal-card h2 {
+  color: #10b981;
+}
+
+.works-card h2 {
+  color: #f59e0b;
+}
+
+.visitors-card h2 {
+  color: #ef4444;
+}
+@media (max-width: 1024px) {
+  .stats-container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-content {
+    padding: 20px;
+    padding-top: 20%;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr; 
+    gap: 15px;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  .dashboard-content h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .stat-card h2 {
+    font-size: 1rem;
+  }
+
+  .stat-card p {
+    font-size: 1.5rem;
+  }
+}
