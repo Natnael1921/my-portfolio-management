@@ -22,9 +22,8 @@ export const createProject = async (req, res) => {
       return res.status(400).json({ message: "Required fields missing" });
     }
 
-    const imageUrl = req.file
-      ? `/uploads/${req.file.filename}`
-      : "";
+   const imageUrl = req.file ? req.file.path : "";
+
 
     const project = new Project({
       title,
@@ -57,8 +56,7 @@ export const updateProject = async (req, res) => {
     };
 
     if (req.file) {
-      updateData.imageUrl =
-        `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+      updateData.imageUrl = req.file.path;
     }
 
     const project = await Project.findByIdAndUpdate(
