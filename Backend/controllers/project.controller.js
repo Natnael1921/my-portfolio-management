@@ -13,17 +13,14 @@ export const getProjects = async (req, res) => {
 // CREATE new project (admin only later)
 export const createProject = async (req, res) => {
   try {
-    console.log(req.body);
-    console.log(req.file);
-
     const { title, description, category, tech, github, live } = req.body;
 
     if (!title || !description || !category) {
       return res.status(400).json({ message: "Required fields missing" });
     }
 
-   const imageUrl = req.file ? req.file.path : "";
-
+    // Use URL from Cloudinary
+    const imageUrl = req.file ? req.file.path || req.file.url : "";
 
     const project = new Project({
       title,
@@ -38,8 +35,8 @@ export const createProject = async (req, res) => {
     await project.save();
 
     res.status(201).json(project);
-
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -56,22 +53,18 @@ export const updateProject = async (req, res) => {
     };
 
     if (req.file) {
-      updateData.imageUrl = req.file.path;
+      updateData.imageUrl = req.file.path || req.file.url;
     }
 
-    const project = await Project.findByIdAndUpdate(
-      req.params.id,
-      updateData,
-      { new: true }
-    );
+    const project = await Project.findByIdAndUpdate(req.params.id, updateData, {
+      new: true,
+    });
 
     res.json(project);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
-
-
 
 // DELETE project
 export const deleteProject = async (req, res) => {
