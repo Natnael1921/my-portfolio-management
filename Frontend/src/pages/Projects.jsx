@@ -65,10 +65,24 @@ export default function Projects() {
         data.append("image", formData.image);
       }
 
+      let res;
+
       if (editingProject) {
-        await API.put(`/projects/${editingProject._id}`, data);
+        res = await API.put(`/projects/${editingProject._id}`, data);
+        console.log("Update response:", res.data); 
       } else {
-        await API.post("/projects", data);
+        res = await API.post("/projects", data);
+        console.log("Create response:", res.data);
+      }
+
+      if (res.status === 200 || res.status === 201) {
+        console.log(
+          editingProject
+            ? "Project updated successfully!"
+            : "Project created successfully!",
+        );
+      } else {
+        console.log("Operation might have failed:", res.data);
       }
 
       setModalOpen(false);
@@ -85,7 +99,10 @@ export default function Projects() {
 
       fetchProjects();
     } catch (err) {
-      console.log(err.response?.data || err.message);
+      console.error(
+        "Error submitting project:",
+        err.response?.data || err.message,
+      );
     }
   };
 

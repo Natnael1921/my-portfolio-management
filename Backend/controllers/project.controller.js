@@ -13,22 +13,23 @@ export const getProjects = async (req, res) => {
 // CREATE new project (admin only later)
 export const createProject = async (req, res) => {
   try {
-    const { title, description, category, tech, github, live } = req.body;
+    const { title, description, category, tech, githubUrl, liveDemoUrl } =
+      req.body;
 
     if (!title || !description || !category) {
       return res.status(400).json({ message: "Required fields missing" });
     }
 
-    // Use URL from Cloudinary
+    // Use URL from Cloudinary or uploaded file
     const imageUrl = req.file ? req.file.path || req.file.url : "";
 
     const project = new Project({
       title,
       description,
       category,
-      tech,
-      github,
-      live,
+      techStack: tech || [],
+      githubUrl: githubUrl || "",
+      liveDemoUrl: liveDemoUrl || "",
       imageUrl,
     });
 
@@ -44,12 +45,21 @@ export const createProject = async (req, res) => {
 // UPDATE project
 export const updateProject = async (req, res) => {
   try {
-    const { title, description, category } = req.body;
+    const { title, description, category, tech, githubUrl, liveDemoUrl } = req.body;
+
+    const techStack = tech
+      ? Array.isArray(tech)
+        ? tech
+        : tech.split(",").map((t) => t.trim())
+      : [];
 
     let updateData = {
       title,
       description,
       category,
+      githubUrl: githubUrl || "",
+      liveDemoUrl: liveDemoUrl || "",
+      techStack,
     };
 
     if (req.file) {
