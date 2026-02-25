@@ -14,6 +14,8 @@ export default function Projects() {
     title: "",
     category: "personal",
     description: "",
+    liveDemoUrl: "",
+    githubUrl: "",
     image: null,
   });
 
@@ -57,7 +59,8 @@ export default function Projects() {
       data.append("title", formData.title);
       data.append("description", formData.description);
       data.append("category", formData.category);
-
+      data.append("liveDemoUrl", formData.liveDemoUrl);
+      data.append("githubUrl", formData.githubUrl);
       if (formData.image) {
         data.append("image", formData.image);
       }
@@ -75,6 +78,8 @@ export default function Projects() {
         title: "",
         category: "personal",
         description: "",
+        liveDemoUrl: "",
+        githubUrl: "",
         image: null,
       });
 
@@ -91,6 +96,8 @@ export default function Projects() {
       title: project.title,
       category: project.category,
       description: project.description,
+      liveDemoUrl: project.liveDemoUrl || "",
+      githubUrl: project.githubUrl || "",
       image: null,
     });
 
@@ -137,7 +144,6 @@ export default function Projects() {
             <div key={project._id} className="project-card">
               <img
                 src={project.imageUrl}
-
                 alt={project.title}
                 className="project-image"
               />
@@ -201,7 +207,23 @@ export default function Projects() {
                     required
                   />
                 </label>
+                <label>
+                  Live Demo URL
+                  <input
+                    name="liveDemoUrl"
+                    value={formData.liveDemoUrl}
+                    onChange={handleChange}
+                  />
+                </label>
 
+                <label>
+                  GitHub URL
+                  <input
+                    name="githubUrl"
+                    value={formData.githubUrl}
+                    onChange={handleChange}
+                  />
+                </label>
                 <label className="file-input">
                   Project Image
                   <input

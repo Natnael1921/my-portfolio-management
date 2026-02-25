@@ -19,7 +19,12 @@ const projectSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    projectUrl: {
+
+    liveDemoUrl: {
+      type: String,
+    },
+
+    githubUrl: {
       type: String,
     },
     techStack: [
