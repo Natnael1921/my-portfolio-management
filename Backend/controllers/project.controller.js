@@ -37,15 +37,29 @@ export const createProject = async (req, res) => {
 
     res.status(201).json(project);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: error.message });
+    console.error("❌ CREATE PROJECT ERROR:");
+
+    console.error("Message:", error.message);
+    console.error("Name:", error.name);
+    console.error("Stack:", error.stack);
+
+    // mongoose specific (VERY IMPORTANT)
+    if (error.errors) {
+      console.error("Validation Errors:", error.errors);
+    }
+
+    res.status(500).json({
+      message: error.message,
+      error: error.name,
+    });
   }
 };
 
 // UPDATE project
 export const updateProject = async (req, res) => {
   try {
-    const { title, description, category, tech, githubUrl, liveDemoUrl } = req.body;
+    const { title, description, category, tech, githubUrl, liveDemoUrl } =
+      req.body;
 
     const techStack = tech
       ? Array.isArray(tech)
